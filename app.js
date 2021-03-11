@@ -156,6 +156,10 @@ const selectedCounter = () => {
   if (!document.querySelectorAll('input[type="checkbox"]:checked').length) {
     document.getElementById('selected').textContent = 'Selected: None';
   }
+
+  if (!listContainer.childElementCount) {
+    document.getElementById('selected').textContent = '';
+  }
 };
 
 checkExistingTask();
