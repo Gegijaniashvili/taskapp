@@ -1,0 +1,147 @@
+html {
+  height: 100vh;
+}
+
+body {
+  background-color: #ededed;
+  height: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.main-container {
+  width: 800px;
+  height: 800px;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 25%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-radius: 10px;
+  box-shadow: 3px 3px 50px #919191;
+  overflow: hidden;
+}
+
+.buttons-container {
+  background-color: #fff;
+  text-align: center;
+}
+
+.list-container {
+  background-color: #fff;
+  margin: 0 50px;
+  padding: 20px 0;
+  height: 600px;
+  overflow: auto;
+}
+
+ul {
+  list-style-type: none;
+  color: #4f52b3;
+  font-size: 1rem;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+input {
+  border-radius: 5px;
+  outline: none;
+  width: 200px;
+  height: 30px;
+}
+
+button:hover {
+  background-color: rgb(73, 88, 199);
+  color: #fff;
+}
+
+.check-box {
+  width: 30px;
+}
+
+.done {
+  color: #b5b5b5;
+  font-style: italic;
+  text-decoration: line-through;
+  font-size: 1.7rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 95%;
+}
+
+.edit-task-btn,
+.delete-task-btn {
+  width: 26px;
+  height: 26px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.task-left-half {
+  display: flex;
+  max-height: 35px;
+  width: 550px;
+}
+
+.text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 95%;
+  font-size: 1.7rem;
+}
+
+.task-right-half {
+  text-align: end;
+  display: flex;
+  max-height: 35px;
+}
+
+h1 {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 35%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: #4f52b3;
+  font-size: 4rem;
+}
+
+.square {
+  color: #fff;
+  background-color: #4f52b3;
+  outline: none;
+
+  font-size: 1rem;
+  text-decoration: none;
+  width: 65px;
+  margin-top: 20px;
+
+  height: 35px;
+  border: none;
+  width: 40px;
+  margin-left: -5px;
+}
+
+.circle {
+  color: #fff;
+  background-color: #4f52b3;
+  outline: none;
+  padding: 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 100%;
+  width: 65px;
+  margin-top: 20px;
+}
