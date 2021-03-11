@@ -25,6 +25,7 @@ const selectAll = () => {
 
   selectAllBtn.textContent = isAllChecked ? 'select All' : 'Unselect All';
   isAllChecked = !isAllChecked;
+  selectedCounter();
 };
 
 const checkExistingTask = () => {
@@ -56,6 +57,7 @@ const addTask = () => {
     checkBox.type = 'checkbox';
     checkBox.className = 'check-box';
     checkBox.addEventListener('click', checkHandler);
+    checkBox.addEventListener('click', selectedCounter);
 
     let text = textField.value.trim();
     const paragraph = document.createElement('div');
@@ -95,6 +97,7 @@ const addTask = () => {
     deleteTaskBtn.addEventListener('click', () => {
       li.remove();
       checkExistingTask();
+      selectedCounter();
     });
 
     const toggleTaskClass = (e) => {
@@ -122,6 +125,7 @@ const addTask = () => {
   selectAllBtn.textContent = 'Select All';
   isAllChecked = false;
   checkExistingTask();
+  selectedCounter();
 };
 
 const deleteSelected = () => {
@@ -132,6 +136,26 @@ const deleteSelected = () => {
     item.parentElement.parentElement.remove();
   });
   checkExistingTask();
+  selectedCounter();
+};
+
+const selectedCounter = () => {
+  const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+  document.getElementById('selected').textContent =
+    'Selected: ' +
+    document.querySelectorAll('input[type="checkbox"]:checked').length +
+    '/' +
+    document.querySelectorAll('input[type="checkbox"]').length;
+
+  if (
+    checkBoxes.length ===
+    document.querySelectorAll('input[type="checkbox"]:checked').length
+  ) {
+    document.getElementById('selected').textContent = 'Selected: All';
+  }
+  if (!document.querySelectorAll('input[type="checkbox"]:checked').length) {
+    document.getElementById('selected').textContent = 'Selected: None';
+  }
 };
 
 checkExistingTask();

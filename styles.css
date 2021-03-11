@@ -25,11 +25,14 @@ body {
   overflow: hidden;
 }
 
-.buttons-container {
+.card-header {
   background-color: #fff;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  height: 58px;
+  padding: 5px 40px;
 }
-
 .list-container {
   background-color: #fff;
   margin: 0 50px;
@@ -48,6 +51,7 @@ li {
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
+  padding-right: 30px;
 }
 
 input {
@@ -98,7 +102,10 @@ button:hover {
   width: 95%;
   font-size: 1.7rem;
 }
-
+.text-field,
+.square {
+  margin-top: 11px;
+}
 .task-right-half {
   text-align: end;
   display: flex;
@@ -117,6 +124,11 @@ h1 {
   font-size: 4rem;
 }
 
+h2 {
+  vertical-align: middle;
+  min-width: 250px;
+  text-align: left;
+}
 .square {
   color: #fff;
   background-color: #4f52b3;
@@ -125,8 +137,6 @@ h1 {
   font-size: 1rem;
   text-decoration: none;
   width: 65px;
-  margin-top: 20px;
-
   height: 35px;
   border: none;
   width: 40px;
@@ -143,7 +153,6 @@ h1 {
   border: none;
   border-radius: 100%;
   width: 65px;
-  margin-top: 20px;
 }
 
 #select-all-btn,
@@ -153,8 +162,16 @@ h1 {
   padding: 10px;
   outline: none;
   border: none;
+  margin-top: 11px;
 }
 
 #delete-selected-btn {
   background-color: rgb(145, 53, 53);
+}
+.buttons-container {
+  min-width: 210px;
+}
+#selected {
+  color: #919191;
+  font-weight: 300;
 }
