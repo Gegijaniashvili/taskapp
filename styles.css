@@ -145,3 +145,11 @@ h1 {
   width: 65px;
   margin-top: 20px;
 }
+
+#selectAllBtn {
+  background-color: #4f52b3;
+  color: #fff;
+  padding: 10px;
+  outline: none;
+  border: none;
+}

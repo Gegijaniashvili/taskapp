@@ -5,13 +5,10 @@ const selectAllBtn = document.getElementById('selectAllBtn');
 let isAllChecked;
 
 const checkBoxHandler = () => {
-  const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
-  checkBoxes.forEach((checkBox) => {
-    if (!checkBox.checked) {
-      isAllChecked = false;
-      selectAllBtn.textContent = 'Select All';
-    }
-  });
+  const isUncheckedBoxes = !!document.querySelectorAll(
+    'input[type="checkbox"]:not(:checked)'
+  ).length;
+  selectAllBtn.textContent = isUncheckedBoxes ? 'Select All' : 'unselect All';
 };
 
 const selectAll = () => {
@@ -102,7 +99,8 @@ const addTask = () => {
   }
 
   textField.value = '';
-  checkBoxHandler();
+  selectAllBtn.textContent = 'Select All';
+  isAllChecked = false;
 };
 
 addBtn.addEventListener('click', addTask);
