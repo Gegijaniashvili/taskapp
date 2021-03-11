@@ -1,6 +1,32 @@
 const textField = document.getElementById('text-field');
 const addBtn = document.getElementById('add-btn');
 const listContainer = document.getElementById('list-container');
+const selectAllBtn = document.getElementById('selectAllBtn');
+let isAllChecked;
+
+const checkBoxHandler = () => {
+  const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+  checkBoxes.forEach((checkBox) => {
+    if (!checkBox.checked) {
+      isAllChecked = false;
+      selectAllBtn.textContent = 'Select All';
+    }
+  });
+};
+
+const selectAll = () => {
+  const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+  checkBoxes.forEach((checkBox) => {
+    checkBox.checked = !isAllChecked;
+    checkBox.nextElementSibling.setAttribute(
+      'class',
+      isAllChecked ? 'text' : 'done'
+    );
+  });
+
+  selectAllBtn.textContent = isAllChecked ? 'select All' : 'Unselect All';
+  isAllChecked = !isAllChecked;
+};
 
 const checkExistingTask = () => {
   if (!listContainer.childElementCount) {
@@ -27,6 +53,7 @@ const addTask = () => {
     const checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
     checkBox.className = 'check-box';
+    checkBox.addEventListener('click', checkBoxHandler);
 
     let text = textField.value.trim();
     const paragraph = document.createElement('div');
@@ -75,6 +102,7 @@ const addTask = () => {
   }
 
   textField.value = '';
+  checkBoxHandler();
 };
 
 addBtn.addEventListener('click', addTask);
@@ -84,3 +112,5 @@ document.addEventListener('keydown', (e) => {
     addTask();
   }
 });
+
+selectAllBtn.addEventListener('click', selectAll);
