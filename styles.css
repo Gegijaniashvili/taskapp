@@ -146,10 +146,15 @@ h1 {
   margin-top: 20px;
 }
 
-#selectAllBtn {
+#select-all-btn,
+#delete-selected-btn {
   background-color: #4f52b3;
   color: #fff;
   padding: 10px;
   outline: none;
   border: none;
+}
+
+#delete-selected-btn {
+  background-color: rgb(145, 53, 53);
 }
