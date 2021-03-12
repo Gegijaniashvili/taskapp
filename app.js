@@ -216,3 +216,46 @@ const deleteSelectedPageHandler = () => {
   }
   pagesCounter++;
 };
+
+const renderPageTasks = (event) => {
+  const liElements = document.getElementsByTagName('li');
+  const liArray = [...liElements];
+  console.log(liArray);
+
+  const start = event.target.textContent * 5 - 5;
+  const end = start + 5;
+
+  liArray.forEach((item, index) => {
+    if (index >= start && index < end) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+};
+
+const pageBtnEventListener = () => {
+  const pageBtn = document.getElementsByClassName('page-btn');
+  const pageBtnArray = [...pageBtn];
+  pageBtnArray.forEach((item) => {
+    item.onclick = (event) => {
+      renderPageTasks(event);
+    };
+  });
+};
+
+const renderTasks = () => {
+  const liElements = document.getElementsByTagName('li');
+  const liArray = [...liElements];
+
+  if (listContainer.childElementCount > pagesCounter * 15) {
+    listContainer.textContent = '';
+  }
+  // liArray.forEach((item) => {
+  //   if (listContainer.childElementCount > pagesCounter * 15) {
+  //     item.style.display = 'none';
+  //   } else {
+  //     item.style.display = 'flex';
+  //   }
+  // });
+};
