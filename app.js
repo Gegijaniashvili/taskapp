@@ -6,6 +6,7 @@ const deleteSelectedBtn = document.getElementById('delete-selected-btn');
 let isAllChecked;
 let pagesCounter = 0;
 let taskCounter = 0;
+let currentPageN = 0;
 
 const checkHandler = () => {
   const isUncheckedBoxes = !!document.querySelectorAll(
@@ -129,8 +130,12 @@ const addTask = () => {
     checkBox.addEventListener('change', toggleTaskClass);
 
     taskCounter++;
+
+    currentPageN = pagesCounter;
     if (taskCounter % 15 === 1) {
+      // axali gverdia?
       addPageHandler();
+      renderPageTasks();
     }
   }
 
@@ -139,6 +144,8 @@ const addTask = () => {
   isAllChecked = false;
   checkExistingTask();
   selectedCounter();
+  renderPageTasks();
+  pageBtnEventListener();
 };
 
 const deleteSelected = () => {
@@ -177,21 +184,10 @@ const selectedCounter = () => {
   }
 };
 
-checkExistingTask();
-
-addBtn.addEventListener('click', addTask);
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    addTask();
-  }
-});
-selectAllBtn.addEventListener('click', selectAll);
-deleteSelectedBtn.addEventListener('click', deleteSelected);
-
 const addPageHandler = () => {
-  // if (taskCounter % 15 === 1) {
-  // pagesCounter = Math.floor(taskCounter / 15 + !!(taskCounter % 15));
   pagesCounter++;
+
+  currentPageN = pagesCounter;
   const pageBtn = document.createElement('button');
   pageBtn.className = 'page-btn';
   pageBtn.textContent = pagesCounter;
@@ -217,13 +213,11 @@ const deleteSelectedPageHandler = () => {
   pagesCounter++;
 };
 
-const renderPageTasks = (event) => {
-  const liElements = document.getElementsByTagName('li');
-  const liArray = [...liElements];
-  console.log(liArray);
-
-  const start = event.target.textContent * 5 - 5;
-  const end = start + 5;
+const renderPageTasks = () => {
+  const liArray = [...document.getElementsByTagName('li')];
+  console.log(currentPageN); // 1
+  const start = currentPageN * 15 - 15;
+  const end = start + 15;
 
   liArray.forEach((item, index) => {
     if (index >= start && index < end) {
@@ -239,23 +233,18 @@ const pageBtnEventListener = () => {
   const pageBtnArray = [...pageBtn];
   pageBtnArray.forEach((item) => {
     item.onclick = (event) => {
+      currentPageN = event.target.textContent;
       renderPageTasks(event);
     };
   });
 };
+checkExistingTask();
 
-const renderTasks = () => {
-  const liElements = document.getElementsByTagName('li');
-  const liArray = [...liElements];
-
-  if (listContainer.childElementCount > pagesCounter * 15) {
-    listContainer.textContent = '';
+addBtn.addEventListener('click', addTask);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    addTask();
   }
-  // liArray.forEach((item) => {
-  //   if (listContainer.childElementCount > pagesCounter * 15) {
-  //     item.style.display = 'none';
-  //   } else {
-  //     item.style.display = 'flex';
-  //   }
-  // });
-};
+});
+selectAllBtn.addEventListener('click', selectAll);
+deleteSelectedBtn.addEventListener('click', deleteSelected);
