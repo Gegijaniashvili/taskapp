@@ -4,6 +4,8 @@ const listContainer = document.getElementById('list-container');
 const selectAllBtn = document.getElementById('select-all-btn');
 const deleteSelectedBtn = document.getElementById('delete-selected-btn');
 let isAllChecked;
+let pagesCounter = 0;
+let taskCounter = 0;
 
 const checkHandler = () => {
   const isUncheckedBoxes = !!document.querySelectorAll(
@@ -70,8 +72,10 @@ const addTask = () => {
       let input = document.createElement('input');
       input.value = val;
       input.onblur = function () {
-        let val = this.value;
-        this.parentNode.innerHTML = val;
+        if (input.value.trim()) {
+          let val = this.value;
+          this.parentNode.innerHTML = val;
+        }
       };
       this.innerHTML = '';
       this.appendChild(input);
@@ -98,6 +102,10 @@ const addTask = () => {
       li.remove();
       checkExistingTask();
       selectedCounter();
+      taskCounter--;
+      if (!(taskCounter % 15)) {
+        deletePageHandler();
+      }
     });
 
     const toggleTaskClass = (e) => {
@@ -119,6 +127,11 @@ const addTask = () => {
 
     editTaskBtn.addEventListener('click', editTask);
     checkBox.addEventListener('change', toggleTaskClass);
+
+    taskCounter++;
+    if (taskCounter % 15 === 1) {
+      addPageHandler();
+    }
   }
 
   textField.value = '';
@@ -134,9 +147,11 @@ const deleteSelected = () => {
   );
   checkBoxes.forEach((item) => {
     item.parentElement.parentElement.remove();
+    taskCounter--;
   });
   checkExistingTask();
   selectedCounter();
+  deleteSelectedPageHandler();
 };
 
 const selectedCounter = () => {
@@ -172,3 +187,32 @@ document.addEventListener('keydown', (e) => {
 });
 selectAllBtn.addEventListener('click', selectAll);
 deleteSelectedBtn.addEventListener('click', deleteSelected);
+
+const addPageHandler = () => {
+  // if (taskCounter % 15 === 1) {
+  // pagesCounter = Math.floor(taskCounter / 15 + !!(taskCounter % 15));
+  pagesCounter++;
+  const pageBtn = document.createElement('button');
+  pageBtn.className = 'page-btn';
+  pageBtn.textContent = pagesCounter;
+  document.getElementById('page-container').appendChild(pageBtn);
+};
+
+const deletePageHandler = () => {
+  pagesCounter--;
+  const pageButtons = document.getElementById('page-container');
+  pageButtons.lastChild.remove();
+};
+
+const deleteSelectedPageHandler = () => {
+  document.getElementById('page-container').innerHTML = '';
+  pagesCounter = Math.floor(taskCounter / 15);
+  let i = 0;
+  while (i <= pagesCounter) {
+    i++;
+    const pageBtn = document.createElement('button');
+    pageBtn.textContent = i;
+    document.getElementById('page-container').appendChild(pageBtn);
+  }
+  pagesCounter++;
+};
