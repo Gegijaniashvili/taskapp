@@ -175,3 +175,14 @@ h2 {
   color: #919191;
   font-weight: 300;
 }
+
+#page-container {
+  text-align: center;
+  outline: none;
+}
+#page-container button {
+  background-color: #4f52b3;
+  color: #fff;
+  margin-left: 2px;
+  padding: 10px;
+}
