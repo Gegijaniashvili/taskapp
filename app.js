@@ -221,7 +221,7 @@ const deletePageHandler = () => {
 
 const deleteSelectedPageHandler = () => {
   document.getElementById('page-container').innerHTML = '';
-  pagesCounter = Math.floor(taskCounter / 15);
+  pagesCounter = Math.ceil(taskCounter / 15);
   let i = 0;
   while (i < pagesCounter) {
     i++;
