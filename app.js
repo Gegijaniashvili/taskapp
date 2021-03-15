@@ -210,7 +210,10 @@ const deletePageHandler = () => {
   if (pagesCounter === currentPageN) {
     currentPageN--;
   }
-  currentPageN--;
+  //currentPageN--; //1 button on delete all
+  if (taskCounter % 15 === 0) {
+    currentPageN--;
+  }
   renderPageTasks();
 };
 
@@ -225,7 +228,7 @@ const deleteSelectedPageHandler = () => {
     pageBtn.textContent = i;
     document.getElementById('page-container').appendChild(pageBtn);
   }
-  //pageBtnEventListener();
+  pageBtnEventListener();
 };
 
 const renderPageTasks = () => {

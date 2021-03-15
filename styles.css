@@ -13,7 +13,7 @@ body {
   width: 800px;
   height: 800px;
   background-color: #fff;
-  position: absolute;
+  /* position: absolute; */
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -23,6 +23,7 @@ body {
   border-radius: 10px;
   box-shadow: 3px 3px 50px #919191;
   overflow: hidden;
+  position: relative;
 }
 
 .card-header {
@@ -177,8 +178,11 @@ h2 {
 }
 
 #page-container {
-  text-align: right;
+  text-align: center;
   outline: none;
+  position: absolute;
+  bottom: 0;
+  min-width: 800px;
 }
 #page-container button {
   background-color: #4f52b3;
