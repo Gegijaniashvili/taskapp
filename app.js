@@ -107,6 +107,7 @@ const addTask = () => {
       if (!(taskCounter % 15)) {
         deletePageHandler();
       }
+      renderPageTasks();
     });
 
     const toggleTaskClass = (e) => {
@@ -209,14 +210,11 @@ const deletePageHandler = () => {
   if (pagesCounter === currentPageN) {
     currentPageN--;
   }
+  currentPageN--;
   renderPageTasks();
 };
 
 const deleteSelectedPageHandler = () => {
-  console.log(pagesCounter, '-------pagecounter');
-  console.log(currentPageN, '-------currentPageN');
-  console.log(taskCounter, '-------taskCounter');
-  // console.log(pagesCounter, '-------pagecounter')
   document.getElementById('page-container').innerHTML = '';
   pagesCounter = Math.floor(taskCounter / 15);
   let i = 0;
