@@ -205,14 +205,18 @@ const addPageHandler = () => {
 
 const deletePageHandler = () => {
   pagesCounter--;
+
   const pageButtons = document.getElementById('page-container');
   pageButtons.lastChild.remove();
-  if (pagesCounter === currentPageN) {
+  if (pagesCounter === currentPageN && currentPageN !== 1) {
     currentPageN--;
   }
   //currentPageN--; //1 button on delete all
-  if (taskCounter % 15 === 0 && pagesCounter != 1) {
+  if (taskCounter % 15 === 0 && currentPageN !== 1) {
     currentPageN--;
+  }
+  if (currentPageN === 0) {
+    currentPageN++;
   }
   renderPageTasks();
 };
