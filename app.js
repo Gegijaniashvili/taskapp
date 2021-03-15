@@ -33,9 +33,9 @@ const selectAll = () => {
 
 const checkExistingTask = () => {
   const noTask = !listContainer.childElementCount;
-  document.getElementById('no-task-title').hidden = noTask ? false : true;
-  selectAllBtn.hidden = noTask ? true : false;
-  deleteSelectedBtn.hidden = noTask ? true : false;
+  document.getElementById('no-task-title').hidden = !noTask;
+  selectAllBtn.hidden = noTask;
+  deleteSelectedBtn.hidden = noTask;
 };
 
 const addTask = () => {
@@ -232,8 +232,6 @@ const deleteSelectedPageHandler = () => {
   }
 
   currentPageN = pagesCounter;
-  console.log(pagesCounter + 'pppppagecounter');
-  console.log(currentPageN + 'ccureeentpageeee');
   renderPageTasks();
   pageBtnEventListener();
 };
@@ -244,11 +242,7 @@ const renderPageTasks = () => {
   const end = start + 15;
 
   liArray.forEach((item, index) => {
-    if (index >= start && index < end) {
-      item.style.display = 'flex';
-    } else {
-      item.style.display = 'none';
-    }
+    item.style.display = index >= start && index < end ? 'flex' : 'none';
   });
 };
 
