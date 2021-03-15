@@ -223,32 +223,12 @@ const deleteSelectedPageHandler = () => {
   document.getElementById('page-container').innerHTML = '';
   pagesCounter = Math.floor(taskCounter / 15);
   let i = 0;
-  while (i <= pagesCounter) {
+  while (i < pagesCounter) {
     i++;
     const pageBtn = document.createElement('button');
     pageBtn.className = 'page-btn';
     pageBtn.textContent = i;
     document.getElementById('page-container').appendChild(pageBtn);
-  }
-
-  const selectedTasks = document.querySelectorAll(
-    'input[type="checkbox"]:checked'
-  );
-  let n = Math.floor(selectedTasks.length / 15);
-
-  if (!pagesCounter) {
-    pagesCounter++;
-  }
-  if (currentPageN) {
-    currentPageN++;
-  }
-
-  for (let i = 0; i < n; i++) {
-    pagesCounter--;
-  }
-
-  if (!n && pagesCounter === 1) {
-    document.getElementById('page-container').lastChild.remove();
   }
 
   currentPageN = pagesCounter;
@@ -260,7 +240,6 @@ const deleteSelectedPageHandler = () => {
 
 const renderPageTasks = () => {
   const liArray = [...document.getElementsByTagName('li')];
-  console.log(currentPageN); // 1
   const start = currentPageN * 15 - 15;
   const end = start + 15;
 
