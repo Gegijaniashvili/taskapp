@@ -208,11 +208,11 @@ const deletePageHandler = () => {
 
   const pageButtons = document.getElementById('page-container');
   pageButtons.lastChild.remove();
-  if (pagesCounter === currentPageN && currentPageN !== 1) {
+  if (pagesCounter === currentPageN) {
     currentPageN--;
   }
   //currentPageN--; //1 button on delete all
-  if (taskCounter % 15 === 0 && currentPageN !== 1) {
+  if (taskCounter % 15 === 0) {
     currentPageN--;
   }
   if (currentPageN === 0) {
