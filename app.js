@@ -230,8 +230,17 @@ const deleteSelectedPageHandler = () => {
     pageBtn.textContent = i;
     document.getElementById('page-container').appendChild(pageBtn);
   }
+
+  if (taskCounter % 15 === 0) {
+    const pagesNum = taskCounter / 15;
+    //currentPageN = pagesNum;
+    for (let i = 1; i <= pagesNum; i++) {
+      pagesCounter--;
+    }
+  }
   pageBtnEventListener();
   renderPageTasks();
+  pagesCounter = Math.floor(taskCounter / 15) + 1;
 };
 
 const renderPageTasks = () => {
