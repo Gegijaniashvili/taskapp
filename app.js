@@ -238,9 +238,15 @@ const deleteSelectedPageHandler = () => {
       pagesCounter--;
     }
   }
+
   pageBtnEventListener();
   renderPageTasks();
   pagesCounter = Math.floor(taskCounter / 15) + 1;
+
+  if (!taskCounter) {
+    pagesCounter = 0;
+    currentPageN = 0;
+  }
 };
 
 const renderPageTasks = () => {
